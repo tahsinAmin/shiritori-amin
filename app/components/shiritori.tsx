@@ -26,33 +26,36 @@ function Shiritori() {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.target.value);
+        console.log(e.target.value);
     };
 
     return (
-        <>
-            <div className={`p-2 player-1 ${playerTurn == 1 ? 'bg-gray-200' : ''} `}>
-                {wordsPlayer1.map((word, index) => {
-                    return (
-                        <div key={index}>{word}</div>
-                    )
-                })}
-                <form onSubmit={handleSubmit}>
-                    <input
-                        type="text"
-                        value={inputValue}
-                        onChange={handleChange}
-                        className='border-black'
-                        placeholder="Enter something"
-                    />
-                    <button type="submit">Submit</button>
-                </form>
-                {errorMsg && <p>{errorMsg}</p>}
-            </div>
+        <div className='flex justify-center items-center'>
+            <div className='flex gap-10'>
+                <div className={`p-2 player-1 ${playerTurn == 1 ? 'bg-gray-200' : ''} `}>
+                    {wordsPlayer1.map((word, index) => {
+                        return (
+                            <div key={index}>{word}</div>
+                        )
+                    })}
+                    <form onSubmit={handleSubmit}>
+                        <input
+                            type="text"
+                            value={inputValue}
+                            onChange={handleChange}
+                            className='border-black'
+                            placeholder="Enter something"
+                        />
+                        <button type="submit">Submit</button>
+                    </form>
+                    {errorMsg && <p>{errorMsg}</p>}
+                </div>
 
-            <div className={`p-2 player-2 ${playerTurn == 2 ? 'bg-gray-200' : ''} `}>
-
+                <div className={`p-2 player-2 ${playerTurn == 2 ? 'bg-gray-200' : ''} `}>
+                    Player 2
+                </div>
             </div>
-        </>
+        </div>
     );
 }
 
