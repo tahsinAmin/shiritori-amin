@@ -5,9 +5,11 @@ import React, { useState } from 'react';
 function Shiritori() {
     const [inputValue, setInputValue] = useState('');
     const [playerTurn, setPlayerTurn] = useState(1);
-    const [wordsPlayer1, setWordsPlayer1] = useState<string[]>(['tahsin']);
-    const [wordPool, setwordPool] = useState<string[]>(['tahsin']);
+    const [wordPool, setwordPool] = useState<string[]>(['tahsin', 'amin']);
     const [errorMsg, setErrorMsg] = useState('');
+    const [wordsPlayer1, setWordsPlayer1] = useState<string[]>(['tahsin']);
+    const [wordsPlayer2, setWordsPlayer2] = useState<string[]>(['amin']);
+
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -31,29 +33,38 @@ function Shiritori() {
 
     return (
         <div className='flex justify-center items-center'>
-            <div className='flex gap-10'>
-                <div className={`p-2 player-1 ${playerTurn == 1 ? 'bg-gray-200' : ''} `}>
-                    {wordsPlayer1.map((word, index) => {
-                        return (
-                            <div key={index}>{word}</div>
-                        )
-                    })}
-                    <form onSubmit={handleSubmit}>
-                        <input
-                            type="text"
-                            value={inputValue}
-                            onChange={handleChange}
-                            className='border-black'
-                            placeholder="Enter something"
-                        />
-                        <button type="submit">Submit</button>
-                    </form>
-                    {errorMsg && <p>{errorMsg}</p>}
-                </div>
+            <div>
+                <div className='flex gap-10'>
+                    <div className={`p-2 player-1 ${playerTurn == 1 ? 'bg-gray-200' : ''} `}>
+                        {wordsPlayer1.map((word, index) => {
+                            return (
+                                <div key={index}>{word}</div>
+                            )
+                        })}
+                        <form onSubmit={handleSubmit}>
+                            <input
+                                type="text"
+                                value={inputValue}
+                                onChange={handleChange}
+                                className='border-black'
+                                placeholder="Enter something"
+                            />
+                            <button type="submit">Submit</button>
+                        </form>
 
-                <div className={`p-2 player-2 ${playerTurn == 2 ? 'bg-gray-200' : ''} `}>
-                    Player 2
+                    </div>
+
+                    <div className={`p-2 player-2 ${playerTurn == 2 ? 'bg-gray-200' : ''} `}>
+                        Player 2
+                        {wordsPlayer2.map((word, index) => {
+                            return (
+                                <div key={index}>{word}</div>
+                            )
+                        })}
+                    </div>
+
                 </div>
+                {errorMsg && <p>{errorMsg}</p>}
             </div>
         </div>
     );
