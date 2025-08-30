@@ -1,6 +1,9 @@
+# [Live!](https://shiritori-amin.vercel.app/)
+
 # Setup
 
-- Clone the repository `git clone <your_link>`
+- Clone the repository 
+    - `git clone https://github.com/tahsinAmin/shiritori-amin`
 - Open in your IDE and in your terminal, give the following instructions:
     - `npm i`
     - `npm run dev`
