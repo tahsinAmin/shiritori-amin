@@ -15,9 +15,11 @@
 
 
 ## Turn based Game Play
-- [ ] Automatically move to the other player when one player finishes his turn
+- [x] Automatically move to the other player when one player finishes his turn
     - [x] Player 1 will type and enter for word to show in the column
     - [x] When ENTER key is pressed the other column will get active color.
+- [ ] Track each player’s score based on correct or incorrect words and timings  
+    - [x] Show Score
 - [x] Display all previously entered words to avoid repetition. 
     - [x] Display all words used by each player
 
