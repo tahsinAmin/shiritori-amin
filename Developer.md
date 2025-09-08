@@ -3,7 +3,7 @@
 # Feature Requirements and Scoring
 
     | Feature                   | Points    |                           Details                                                                                 |
-- [ ] Turn based Game Play      | 20        | Automatically move to the other player when one player finishes his turn                                          |
+- [-] Turn based Game Play      | 20        | Automatically move to the other player when one player finishes his turn                                          |
 - [ ] Word Meaning Validation   | 20        | Validate words using DictionaryAPI or any other API                                                               |
 - [ ] Word Structure Validation | 10        | Validate word starting with last letter of the previous word, minimum 4 letters, and can not be repeated          |
 - [ ] Countdown Feature         | 10        | Implement a countdown timer for each player’s turn.                                                               |
