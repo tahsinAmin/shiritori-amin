@@ -1,4 +1,6 @@
-'use client'
+import TabContent from "../components/TabContent";
+
+const code = `'use client'
 
 import React, { useState, useRef, useEffect } from 'react';
 
@@ -198,4 +200,18 @@ export default function ClickAwayDemo() {
             </div>
         </div>
     );
+}`;
+
+export default function HomeTab() {
+    return (
+        <TabContent
+            title="Welcome Profile"
+            description="This is the profile tab with a video and a code snippet."
+            videoUrl="https://www.youtube.com/embed/I1-zd4nE-oI"
+            code={code}
+        />
+    );
 }
+{/* <iframe width="1905" height="784" src="https://www.youtube.com/embed/I1-zd4nE-oI" title="Click Away Component" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> */}
+
+{/* <iframe width="1905" height="784" src="https://www.youtube.com/embed/I1-zd4nE-oI" title="Click Away Component" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> */ }
