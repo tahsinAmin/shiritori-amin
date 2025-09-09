@@ -13,3 +13,7 @@ In Shiritori:
 - Players take turns entering words, where each new word must begin with the last letter of the previous word.
 - Words cannot be repeated, and they must be valid English words.
 - If a player fails to enter a correct word, they lose a point.
+
+
+# TODO
+- [ ] Component library - have a copy button and success button 

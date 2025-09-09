@@ -24,7 +24,7 @@ import LoadingSpinner from "./components/LoadingSpinner";
 const tabComponents: Record<string, React.ComponentType> = {
   home: dynamic(() => import("./tabs/home"), { loading: () => <LoadingSpinner /> }),
   profile: dynamic(() => import("./tabs/profile"), { loading: () => <LoadingSpinner /> }),
-  analytics: dynamic(() => import("./tabs/analytics"), { loading: () => <LoadingSpinner /> }),
+  portals: dynamic(() => import("./tabs/portals"), { loading: () => <LoadingSpinner /> }),
   settings: dynamic(() => import("./tabs/settings"), { loading: () => <LoadingSpinner /> }),
 };
 
@@ -33,11 +33,11 @@ export default function Page() {
   const ActiveComponent = tabComponents[activeTab];
 
   return (
-    <>
+    <div className="flex">
       <Sidebar onSelect={setActiveTab} />
       <main className="flex-1">
         {ActiveComponent ? <ActiveComponent /> : <p className="p-8">No tab selected</p>}
       </main>
-    </>
+    </div>
   );
 }
