@@ -7,15 +7,14 @@ interface Props<T> {
     renderItem: (item: T) => React.ReactNode;
     onChange?: React.ChangeEventHandler;
     onSelect?: (item: T) => void;
+    value?: string;
 }
 
-const LiveSearch = ({ results = [], renderItem, onChange, onSelect }: Props<any>) => {
+const LiveSearch = ({ results = [], renderItem, onChange, onSelect, value }: Props<any>) => {
     const [focusedIndex, setFocusedIndex] = useState<number>(-1);
     const resultContainer = useRef<HTMLDivElement>(null);
     const [showResults, setShowResults] = useState(false);
-    const [defaultValue, setdefaultValue] = useState('');
-
-
+    const [defaultValue, setDefaultValue] = useState('');
 
     const handleSelection = (selectIndex: number) => {
         const selectedItem = results[selectIndex];
@@ -50,6 +49,12 @@ const LiveSearch = ({ results = [], renderItem, onChange, onSelect }: Props<any>
         setFocusedIndex(nextIndexCount);
     }
 
+    type changeHandler = React.ChangeEventHandler<HTMLInputElement>;
+    const handleChange: changeHandler = (e) => {
+        setDefaultValue(e.target.value);
+        onChange && onChange(e);
+    }
+
     useEffect(() => {
         if (!resultContainer.current) return;
 
@@ -61,17 +66,22 @@ const LiveSearch = ({ results = [], renderItem, onChange, onSelect }: Props<any>
         setShowResults(true);
     }, [results]);
 
+    useEffect(() => {
+        if (value) setDefaultValue(value);
+    }, [value]);
+
     return (
         <div className='h-[90vh] flex items-center justify-center'>
-            <div 
-            tabIndex={1}
-            onBlur={resetSearchComplete}
-            onKeyDown={handleKeyDown}
-            className='relative'>
+            <div
+                tabIndex={1}
+                onBlur={resetSearchComplete}
+                onKeyDown={handleKeyDown}
+                className='relative'>
                 <input
-                    onChange={onChange}
+                    onChange={handleChange}
                     type="text"
                     placeholder="Search..."
+                    value={defaultValue}
                     className='w-[600px] px-5 py-3 text-lg rounded-full border-2 border-gray-500 focus:border-gray-700 outline-none transition' />
 
                 {/* Search results container */}

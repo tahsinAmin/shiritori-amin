@@ -20,6 +20,7 @@ const profiles = [
 const page = () => {
 
     const [results, setResults] = useState<{ id: string, name: string }[]>();
+    const [selectedProfile, setSelectedProfile] = useState<{ id: string, name: string }>();
 
     type changeHandler = React.ChangeEventHandler<HTMLInputElement>;
     const handleChange: changeHandler = (e) => {
@@ -36,7 +37,8 @@ const page = () => {
             results={results}
             onChange={handleChange}
             renderItem={(item) => <p>{item.name}</p>}
-            onSelect={(item) => console.log(item)}
+            onSelect={(item) => setSelectedProfile(item)}
+            value={selectedProfile?.name}
         />
     )
 }
