@@ -32,7 +32,12 @@ const page = () => {
         setResults(filteredResults);
     }
     return (
-        <LiveSearch results={results} onChange={handleChange} renderItem={(item) => <p>{item.name}</p>} />
+        <LiveSearch
+            results={results}
+            onChange={handleChange}
+            renderItem={(item) => <p>{item.name}</p>}
+            onSelect={(item) => console.log(item)}
+        />
     )
 }
 

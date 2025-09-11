@@ -1,43 +1,60 @@
 'use client'
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 
 interface Props<T> {
     results?: T[];
     renderItem: (item: T) => React.ReactNode;
     onChange?: React.ChangeEventHandler;
+    onSelect?: (item: T) => void;
 }
 
-const LiveSearch = ({ results = [], renderItem, onChange }: Props<any>) => {
-    const [focusIndex, setFocusIndex] = useState<number>(-1);
+const LiveSearch = ({ results = [], renderItem, onChange, onSelect }: Props<any>) => {
+    const [focusedIndex, setFocusedIndex] = useState<number>(-1);
     const resultContainer = useRef<HTMLDivElement>(null);
     const [showResults, setShowResults] = useState(false);
+    const [defaultValue, setdefaultValue] = useState('');
+
+
+
+    const handleSelection = (selectIndex: number) => {
+        const selectedItem = results[selectIndex];
+        if (!selectedItem) resetSearchComplete();
+        onSelect && onSelect(selectedItem);
+        resetSearchComplete();
+    }
+
+    const resetSearchComplete = useCallback(() => {
+        setFocusedIndex(-1);
+        setShowResults(false);
+    }, []);
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
         const { key } = e;
         let nextIndexCount = 0;
         if (e.key === 'ArrowDown') {
             console.log('ArrowDown pressed');
-            nextIndexCount = (focusIndex + 1) % results.length;
+            nextIndexCount = (focusedIndex + 1) % results.length;
         }
         if (e.key === 'ArrowUp') {
             console.log('ArrowUp pressed');
-            nextIndexCount = (focusIndex + results.length - 1) % results.length;
+            nextIndexCount = (focusedIndex + results.length - 1) % results.length;
         }
         if (e.key === 'Escape') {
-            console.log('Escape pressed');
-        }
-        if (e.key === 'Enter') {
             console.log('Enter pressed');
         }
-        setFocusIndex(nextIndexCount);
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            handleSelection(focusedIndex)
+        }
+        setFocusedIndex(nextIndexCount);
     }
 
     useEffect(() => {
         if (!resultContainer.current) return;
 
         resultContainer.current.scrollIntoView({ block: 'center', inline: 'center' });
-    }, [focusIndex]);
+    }, [focusedIndex]);
 
     useEffect(() => {
         if (!results.length) return setShowResults(false);
@@ -46,7 +63,10 @@ const LiveSearch = ({ results = [], renderItem, onChange }: Props<any>) => {
 
     return (
         <div className='h-[90vh] flex items-center justify-center'>
-            <div tabIndex={1} onKeyDown={handleKeyDown} className='relative'>
+            <div 
+            tabIndex={1}
+            onKeyDown={handleKeyDown}
+            className='relative'>
                 <input
                     onChange={onChange}
                     type="text"
@@ -60,10 +80,11 @@ const LiveSearch = ({ results = [], renderItem, onChange }: Props<any>) => {
                         {results.map((item, index) => (
                             <div
                                 key={index}
-                                ref={index === focusIndex ? resultContainer : null}
+                                onMouseDown={() => handleSelection(index)}
+                                ref={index === focusedIndex ? resultContainer : null}
                                 style={{
                                     backgroundColor:
-                                        index === focusIndex ? 'rgba(0,0,0,0.1)' : ''
+                                        index === focusedIndex ? 'rgba(0,0,0,0.1)' : ''
                                 }}
                                 className='cursor-pointer hover:bg-black hover:bg-opacity-10 p-2'>
                                 {renderItem(item)}
