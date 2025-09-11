@@ -1,10 +1,11 @@
 import React from 'react'
 
 interface Props<T> {
-    results: T[]
+    results: T[];
+    renderItem: (item: T) => React.ReactNode;
 }
 
-const LiveSearch = ({ results }: Props<T>) => {
+const LiveSearch = ({ results, renderItem }: Props<T>) => {
     return (
         <div className='h-screen flex items-center justify-center'>
             <div className='relative'>
@@ -14,11 +15,12 @@ const LiveSearch = ({ results }: Props<T>) => {
                     className='w-[600px] px-5 py-3 text-lg rounded-full border-2 border-gray-500 focus:border-gray-700 outline-none transition' />
 
                 {/* Search results container */}
-                <div className='absolute mt-1 w-full p-2 bg-white shadow-lg rounded bl rounded-br max-h-36 overflow-y-auto'>
+                <div className='absolute mt-1 w-full p-2 bg-white shadow-lg 
+                rounded-bl rounded-br max-h-56 overflow-y-auto'>
                     {results.map((item, index) => (
                         <div key={index}
                             className='cursor-pointer hover:bg-black hover:bg-opacity-10 p-2'>
-
+                            {renderItem(item)}
                         </div>
                     ))}
                 </div>
