@@ -65,6 +65,7 @@ const LiveSearch = ({ results = [], renderItem, onChange, onSelect }: Props<any>
         <div className='h-[90vh] flex items-center justify-center'>
             <div 
             tabIndex={1}
+            onBlur={resetSearchComplete}
             onKeyDown={handleKeyDown}
             className='relative'>
                 <input
