@@ -2,7 +2,6 @@
 import React, { useState } from 'react'
 import LiveSearch from '../components/LiveSearch'
 
-interface Props { }
 const profiles = [
     { id: '1', name: 'John Doe' },
     { id: '2', name: 'Jane Doe' },
@@ -17,9 +16,10 @@ const profiles = [
     { id: '11', name: 'Anne Ortha' },
 ]
 
-const page = () => {
+const Page = () => {
 
     const [results, setResults] = useState<{ id: string, name: string }[]>();
+    
     const [selectedProfile, setSelectedProfile] = useState<{ id: string, name: string }>();
 
     type changeHandler = React.ChangeEventHandler<HTMLInputElement>;
@@ -43,4 +43,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page

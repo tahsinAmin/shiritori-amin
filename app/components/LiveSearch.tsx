@@ -10,7 +10,7 @@ interface Props<T> {
     value?: string;
 }
 
-const LiveSearch = ({ results = [], renderItem, onChange, onSelect, value }: Props<any>) => {
+const LiveSearch = <T,>({ results = [], renderItem, onChange, onSelect, value }: Props<T>) => {
     const [focusedIndex, setFocusedIndex] = useState<number>(-1);
     const resultContainer = useRef<HTMLDivElement>(null);
     const [showResults, setShowResults] = useState(false);
@@ -18,8 +18,11 @@ const LiveSearch = ({ results = [], renderItem, onChange, onSelect, value }: Pro
 
     const handleSelection = (selectIndex: number) => {
         const selectedItem = results[selectIndex];
-        if (!selectedItem) resetSearchComplete();
-        onSelect && onSelect(selectedItem);
+        if (!selectedItem) {
+            resetSearchComplete();
+            return;
+        }
+        if (onSelect) onSelect(selectedItem);
         resetSearchComplete();
     }
 
@@ -31,18 +34,18 @@ const LiveSearch = ({ results = [], renderItem, onChange, onSelect, value }: Pro
     const handleKeyDown = (e: React.KeyboardEvent) => {
         const { key } = e;
         let nextIndexCount = 0;
-        if (e.key === 'ArrowDown') {
+        if (key === 'ArrowDown') {
             console.log('ArrowDown pressed');
             nextIndexCount = (focusedIndex + 1) % results.length;
         }
-        if (e.key === 'ArrowUp') {
+        if (key === 'ArrowUp') {
             console.log('ArrowUp pressed');
             nextIndexCount = (focusedIndex + results.length - 1) % results.length;
         }
-        if (e.key === 'Escape') {
+        if (key === 'Escape') {
             resetSearchComplete();
         }
-        if (e.key === 'Enter') {
+        if (key === 'Enter') {
             e.preventDefault();
             handleSelection(focusedIndex)
         }
@@ -52,7 +55,7 @@ const LiveSearch = ({ results = [], renderItem, onChange, onSelect, value }: Pro
     type changeHandler = React.ChangeEventHandler<HTMLInputElement>;
     const handleChange: changeHandler = (e) => {
         setDefaultValue(e.target.value);
-        onChange && onChange(e);
+        if (onChange) onChange(e);
     }
 
     useEffect(() => {
