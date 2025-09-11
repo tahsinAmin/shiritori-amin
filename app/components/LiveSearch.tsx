@@ -40,7 +40,7 @@ const LiveSearch = ({ results = [], renderItem, onChange, onSelect, value }: Pro
             nextIndexCount = (focusedIndex + results.length - 1) % results.length;
         }
         if (e.key === 'Escape') {
-            console.log('Enter pressed');
+            resetSearchComplete();
         }
         if (e.key === 'Enter') {
             e.preventDefault();
