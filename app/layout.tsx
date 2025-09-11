@@ -33,6 +33,7 @@ export default function RootLayout({
           <Link href="/">Documentation</Link>
           <Link href="/shiritori">Shiritori</Link>
           <Link href="/portals">Portals</Link>
+          <Link href="/dropdown">Dropdown</Link>
         </header>
         {children}
         <div id="modal-container">
