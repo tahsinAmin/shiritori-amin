@@ -1,14 +1,44 @@
-import React from 'react'
+'use client'
+
+import React, { useEffect, useRef, useState } from 'react'
 
 interface Props<T> {
     results: T[];
     renderItem: (item: T) => React.ReactNode;
 }
 
-const LiveSearch = ({ results, renderItem }: Props<T>) => {
+const LiveSearch = ({ results, renderItem }: Props<any>) => {
+    const [focusIndex, setFocusIndex] = useState<number>(-1);
+    const resultContainer = useRef<HTMLDivElement>(null);
+
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+        const { key } = e;
+        let nextIndexCount = 0;
+        if (e.key === 'ArrowDown') {
+            console.log('ArrowDown pressed');
+            nextIndexCount = (focusIndex + 1) % results.length;
+        }
+        if (e.key === 'ArrowUp') {
+            console.log('ArrowUp pressed');
+            nextIndexCount = (focusIndex + results.length - 1) % results.length;
+        }
+        if (e.key === 'Escape') {
+            console.log('Escape pressed');
+        }
+        if (e.key === 'Enter') {
+            console.log('Enter pressed');
+        }
+        setFocusIndex(nextIndexCount);
+    }
+
+    useEffect(() => {
+        if (!resultContainer.current) return;
+
+        resultContainer.current.scrollIntoView({ block: 'center', inline: 'center' });
+    }, [focusIndex]);
     return (
-        <div className='h-screen flex items-center justify-center'>
-            <div className='relative'>
+        <div className='h-[90vh] flex items-center justify-center'>
+            <div tabIndex={1} onKeyDown={handleKeyDown} className='relative'>
                 <input
                     type="text"
                     placeholder="Search..."
@@ -18,7 +48,13 @@ const LiveSearch = ({ results, renderItem }: Props<T>) => {
                 <div className='absolute mt-1 w-full p-2 bg-white shadow-lg 
                 rounded-bl rounded-br max-h-56 overflow-y-auto'>
                     {results.map((item, index) => (
-                        <div key={index}
+                        <div
+                            key={index}
+                            ref={index === focusIndex ? resultContainer : null}
+                            style={{
+                                backgroundColor:
+                                    index === focusIndex ? 'rgba(0,0,0,0.1)' : ''
+                            }}
                             className='cursor-pointer hover:bg-black hover:bg-opacity-10 p-2'>
                             {renderItem(item)}
                         </div>
