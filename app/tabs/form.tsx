@@ -174,6 +174,98 @@ export default function FormPage() {
   );
 }
 
+
+----------------
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Tabs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* The container for the moving background */
+        .tab-bg-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        /* The moving background element */
+        .tab-bg {
+            position: absolute;
+            height: 100%;
+            background-color: black;
+            border-radius: 9999px; /* rounded-full */
+            transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+
+    <div class="relative bg-gray-200 p-1.5 rounded-full shadow-lg max-w-sm w-full">
+        <!-- The moving background container -->
+        <div class="tab-bg-container">
+            <div id="active-bg" class="tab-bg"></div>
+        </div>
+
+        <!-- The actual tab buttons -->
+        <div id="tab-container" class="relative flex justify-between">
+            <button class="tab-button flex-1 text-center py-2 px-4 text-sm font-medium text-gray-800 rounded-full focus:outline-none z-10 transition-colors duration-300 ease-in-out" data-tab-id="1">Tab 1</button>
+            <button class="tab-button flex-1 text-center py-2 px-4 text-sm font-medium text-gray-800 rounded-full focus:outline-none z-10 transition-colors duration-300 ease-in-out" data-tab-id="2">Tab 2</button>
+            <button class="tab-button flex-1 text-center py-2 px-4 text-sm font-medium text-gray-800 rounded-full focus:outline-none z-10 transition-colors duration-300 ease-in-out" data-tab-id="3">Tab 3</button>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabsContainer = document.getElementById('tab-container');
+            const activeBg = document.getElementById('active-bg');
+            const tabButtons = document.querySelectorAll('.tab-button');
+
+            // Function to set the position and width of the active background
+            const setActiveTab = (button) => {
+                const buttonWidth = button.offsetWidth;
+                const buttonLeft = button.offsetLeft;
+
+                // Update the transform and width of the background element
+                activeBg.style.transform = 'translateX($-{buttonLeft}px)';
+                activeBg.style.width = '$-{buttonWidth}px';
+
+                // Update text color for active/inactive tabs
+                tabButtons.forEach(btn => {
+                    btn.style.color = 'rgb(55, 65, 81)'; /* gray-700 */
+                });
+                button.style.color = 'white';
+            };
+
+            // Event listener for tab clicks
+            tabsContainer.addEventListener('click', (event) => {
+                const clickedButton = event.target.closest('.tab-button');
+                if (clickedButton) {
+                    setActiveTab(clickedButton);
+                }
+            });
+
+            // Set the initial active tab on page load
+            const initialTab = document.querySelector('.tab-button[data-tab-id="1"]');
+            if (initialTab) {
+                setActiveTab(initialTab);
+            }
+        });
+    </script>
+</body>
+</html>
+
+
 `}
         />
     );
