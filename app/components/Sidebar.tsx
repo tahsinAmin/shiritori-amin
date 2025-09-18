@@ -7,6 +7,7 @@ const tabs = [
   { id: "home", name: "Home", icon: Home },
   { id: "profile", name: "Profile", icon: User },
   { id: "portals", name: "Portals", icon: BarChart3 },
+  { id: "form", name: "Form", icon: BarChart3 },
   { id: "settings", name: "Settings", icon: Settings },
 ];
 

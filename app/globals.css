@@ -48,3 +48,19 @@ body {
   inset: 0;
   background: rgba(0,0,0,0.1)
 }
+
+.form-container {
+  transition: height 0.3s ease-in-out;
+  overflow: hidden; /* Important to hide content that is not yet shown */
+  height: 0;
+}
+/* Define fixed heights for each state */
+.form-container.child {
+  height: 100px; /* Example fixed height for 'Child' */
+}
+.form-container.female {
+  height: 180px; /* Example fixed height for 'Female' */
+}
+.form-container.male {
+  height: 290px; /* Example fixed height for 'Male' */
+}

@@ -32,7 +32,7 @@ export default function RootLayout({
         <header>
           <Link href="/">Documentation</Link>
           <Link href="/shiritori">Shiritori</Link>
-          <Link href="/portals">Portals</Link>
+          <Link href="/form">Form</Link>
           <Link href="/dropdown">Dropdown</Link>
         </header>
         {children}
