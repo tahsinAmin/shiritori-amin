@@ -29,7 +29,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen bg-gray-100`}
       >
-        <header>
+        <header className="flex justify-center gap-4 py-4 bg-white box-shadow lg:box-shadow-lg">
           <Link href="/">Documentation</Link>
           <Link href="/shiritori">Shiritori</Link>
           <Link href="/form">Form</Link>

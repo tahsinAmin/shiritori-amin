@@ -16,4 +16,11 @@ In Shiritori:
 
 
 # TODO
+- [-] [Make something like this](https://50-days-of-components.vercel.app/expandable) 
+    - [x] Add Header
+
+- [ ] Adjust links with proiority and proper naming.
+- [ ] Bring the intravtove tab component here from Gemini
+- [ ] New features first link
+- [ ] All features will be shown.
 - [ ] Component library - have a copy button and success button 
