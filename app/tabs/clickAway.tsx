@@ -205,13 +205,10 @@ export default function ClickAwayDemo() {
 export default function HomeTab() {
     return (
         <TabContent
-            title="Welcome Profile"
-            description="This is the profile tab with a video and a code snippet."
+            title="Click Away Component"
+            description="This is a Click Away Handler component with video and code snippet on how it works."
             videoUrl="https://www.youtube.com/embed/I1-zd4nE-oI"
             code={code}
         />
     );
 }
-{/* <iframe width="1905" height="784" src="https://www.youtube.com/embed/I1-zd4nE-oI" title="Click Away Component" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> */}
-
-{/* <iframe width="1905" height="784" src="https://www.youtube.com/embed/I1-zd4nE-oI" title="Click Away Component" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> */ }

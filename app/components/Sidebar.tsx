@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { Home, User, BarChart3, Settings } from "lucide-react";
+import { Home, BarChart3, Settings, MouseIcon } from "lucide-react";
 
 const tabs = [
   { id: "home", name: "Home", icon: Home },
-  { id: "profile", name: "Profile", icon: User },
+  { id: "clickaway", name: "Click Away", icon: MouseIcon },
   { id: "portals", name: "Portals", icon: BarChart3 },
   { id: "form", name: "Form", icon: BarChart3 },
   { id: "settings", name: "Settings", icon: Settings },

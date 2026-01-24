@@ -7,7 +7,7 @@ import LoadingSpinner from "./components/LoadingSpinner";
 
 const tabComponents: Record<string, React.ComponentType> = {
   home: dynamic(() => import("./tabs/home"), { loading: () => <LoadingSpinner /> }),
-  profile: dynamic(() => import("./tabs/profile"), { loading: () => <LoadingSpinner /> }),
+  clickaway: dynamic(() => import("./tabs/clickAway"), { loading: () => <LoadingSpinner /> }),
   portals: dynamic(() => import("./tabs/portals"), { loading: () => <LoadingSpinner /> }),
   form: dynamic(() => import("./tabs/form"), { loading: () => <LoadingSpinner /> }),
   settings: dynamic(() => import("./tabs/settings"), { loading: () => <LoadingSpinner /> }),
