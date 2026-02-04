@@ -27,13 +27,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen bg-gray-100`}
+        className={`${geistSans.variable} ${geistMono.variable} flex flex-col antialiased h-screen bg-gray-100`}
       >
         <header className="flex justify-center gap-4 py-4 bg-white box-shadow lg:box-shadow-lg">
           <Link href="/">Documentation</Link>
           <Link href="/shiritori">Shiritori</Link>
+          <Link href="/snap">Snap</Link>
           <Link href="/form">Form</Link>
           <Link href="/dropdown">Dropdown</Link>
+          <Link href="/table">Table</Link>
         </header>
         {children}
         <div id="modal-container">
