@@ -1,6 +1,6 @@
 # [Live!](https://shiritori-amin.vercel.app/)
 
-# Setup
+## Setup
 
 - Clone the repository
   - `git clone https://github.com/tahsinAmin/shiritori-amin`
@@ -8,7 +8,7 @@
   - `npm i`
   - `npm run dev`
 
-# Game Instructions
+## Game Instructions
 
 In Shiritori:
 
@@ -16,7 +16,7 @@ In Shiritori:
 - Words cannot be repeated, and they must be valid English words.
 - If a player fails to enter a correct word, they lose a point.
 
-# TODO
+## TODO
 
 - [-] [Make something like this](https://50-days-of-components.vercel.app/expandable)
   - [x] Add Header
@@ -27,3 +27,4 @@ In Shiritori:
 - [ ] New features first link
 - [ ] All features will be shown.
 - [ ] Component library - have a copy button and success button
+- [ ] Form to have a video of Demonstration.

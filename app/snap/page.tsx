@@ -7,6 +7,7 @@ export default function WindowManager() {
     const [nextId, setNextId] = useState(1);
     const [dragging, setDragging] = useState(null);
     const [snapPreview, setSnapPreview] = useState(null);
+    const [topWindow, setTopWindow] = useState(null);
     const containerRef = useRef(null);
 
     const createWindow = () => {
@@ -28,6 +29,9 @@ export default function WindowManager() {
 
     const handleMouseDown = (e, id) => {
         if (e.target.closest('.close-btn')) return;
+
+        // Bring window to front
+        setTopWindow(id);
 
         const win = windows.find(w => w.id === id);
         const rect = e.currentTarget.getBoundingClientRect();
@@ -154,7 +158,7 @@ export default function WindowManager() {
                         width: `${win.width}px`,
                         height: `${win.height}px`,
                         cursor: dragging?.id === win.id ? 'grabbing' : 'grab',
-                        zIndex: dragging?.id === win.id ? 50 : 10
+                        zIndex: topWindow === win.id ? 50 : 10
                     }}
                     onMouseDown={(e) => handleMouseDown(e, win.id)}
                 >

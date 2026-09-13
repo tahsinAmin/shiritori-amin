@@ -4,7 +4,7 @@ export default function HomeTab() {
     return (
         <TabContent
             title="Welcome Form"
-            description="This is the Form tab with a video and a code snippet."
+            description="A simple dropdown but using transition to open multiple options without flickering."
             videoUrl="https://www.youtube.com/embed/dQw4w9WgXcQ"
             code={`
         CSS
