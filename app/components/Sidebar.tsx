@@ -20,7 +20,7 @@ export default function Sidebar({ onSelect }: { onSelect: (id: string) => void }
   };
 
   return (
-    <div className="w-64 bg-white shadow-lg">
+    <div className="w-64 h-screen bg-white shadow-lg overflow-y-auto">
       <div className="p-4 border-b">
         <h1 className="text-xl font-bold text-gray-800">Navigation</h1>
       </div>

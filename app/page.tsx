@@ -18,9 +18,9 @@ export default function Page() {
   const ActiveComponent = tabComponents[activeTab];
 
   return (
-    <div className="flex">
+    <div className="flex h-screen overflow-hidden">
       <Sidebar onSelect={setActiveTab} />
-      <main className="flex-1">
+      <main className="flex-1 overflow-y-auto min-h-0">
         {ActiveComponent ? <ActiveComponent /> : <p className="p-8">No tab selected</p>}
       </main>
     </div>

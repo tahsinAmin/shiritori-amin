@@ -14,7 +14,7 @@ export default function TabContent({ title, description, videoUrl, code }: TabCo
   const [showVideo, setShowVideo] = useState(true);
 
   return (
-    <div className="flex-1 p-8">
+    <div className="flex-1 p-8 overflow-y-auto min-h-0">
       <div className="bg-white rounded-lg shadow-sm p-6">
         <h2 className="text-2xl font-bold text-gray-800 mb-2">{title}</h2>
         <p className="text-gray-600 mb-4">{description}</p>
